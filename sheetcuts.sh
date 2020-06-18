@@ -1,3 +1,20 @@
+function wc_datafile {
+    # convenience function that counts a file's
+    # number of lines if it is plaintext, or
+    # number of bytes if it is not plaintext
+    #
+    # WARNING: number of lines is NOT the same as number of "rows" in a CSV
+    for fname in "$@"; do
+        ftype=$(file -b --mime-type "${fname}")
+        if [[ "${ftype}" == *"text"* ]]
+            then wx="$(wc -l < "${fname}")"; wy="lines"
+            else wx="$(wc -c < "${fname}")"; wy="bytes"
+        fi
+        LC_NUMERIC=en_US printf "%'15d %s: %s\n" ${wx} ${wy} "${fname}"
+    done
+}
+
+
 function xcel {
     # Opens file(s) into Microsoft Excel
     # Note: requires Microsoft Excel;  only works on macOS
@@ -9,7 +26,8 @@ function xcel {
     #   xcel *.csv *.xls*
     echo "Attempting to open ${#} file(s) in Microsoft Excel"
     for fname in "$@"; do
-        printf "\t%s\n" "${fname}"
+        printf "  %s\n" "$(wc_datafile "${fname}")"
+        # printf "\t%s\n" "$(du -h "${fname}")"
         open -a 'Microsoft Excel' "${fname}"
     done
 }
@@ -25,7 +43,8 @@ function xlibre {
     #   xlibre *.csv *.xls*
     echo "Attempting to open ${#} file(s) in LibreOffice (that's praxis!)"
     for fname in "$@"; do
-        printf "\t%s\n" "${fname}"
+        printf "  %s\n" "$(wc_datafile "${fname}")"
         open -a 'LibreOffice' "${fname}"
     done
 }
+
