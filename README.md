@@ -1,4 +1,4 @@
-# Dan's own bash custom functions
+# Dan's own custom Bash happy helper functions
 
 A bunch of helper functions I wrote to use for my own macOS terminal convenience. 
 
@@ -11,11 +11,11 @@ A bunch of helper functions I wrote to use for my own macOS terminal convenience
 
 ```sh
 $ cd ~/Downloads
-$ git clone https://github.com/dannguyen/bash_custom_functions.git
+$ git clone https://github.com/dannguyen/bashappy_helpers.git
 ```
 
 Example invocation in your `~/.bash_profile`:
 
 ```sh
-source ~/Downloads/bash_custom_functions/main.sh
+source ~/Downloads/bashappy_helpers/main.sh
 ```
