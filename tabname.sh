@@ -7,10 +7,11 @@
 function tabname {
   # Set macOS Terminal tab title to given arguments
   #
-  #  Example:
-  #   $ tabtitle Hello this is my new tab title
+  #  $ tabtitle Hello this is my new tab title
   printf "\033]1;%s\007" "$*"
 }
+
+
 
 function tadname {
     # Like tabname() except show grandparent and parent subdir path
@@ -21,7 +22,7 @@ function tadname {
     #    hello new tab name – ../projects/subname
 
     #  Note: By default, the parent Terminal reflects the subdirectory of the
-    #   currently active tab, thus making this function kind of redundant?
+    #   currently active tab, thus making this function kind of redundant? why did i even try :(
     #
     #  WARNING: the subdir component does not auto-update
     #    when changing directories

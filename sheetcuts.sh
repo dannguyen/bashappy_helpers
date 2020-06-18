@@ -7,12 +7,11 @@ function xcel {
     # $ xcel mybook.xlsx
     # $ xcel *.xls*
     # $ xcel *.csv
-    echo "Opening ${#} file(s) in Microsoft Excel:"
+    echo "Attempting to open ${#} file(s) in Microsoft Excel"
     for fname in "$@"; do
         printf "\t%s\n" "${fname}"
         open -a 'Microsoft Excel' "${fname}"
     done
-
 }
 
 function xlibre {
@@ -22,9 +21,8 @@ function xlibre {
     # Example usage:
     #
     # $ xlibre mybook.xlsx
-    #
     # $ xlibre *.csv
-    echo "Opening ${#} file(s) in LibreOffice (that's praxis!)"
+    echo "Attempting to open ${#} file(s) in LibreOffice (that's praxis!)"
     for fname in "$@"; do
         printf "\t%s\n" "${fname}"
         open -a 'LibreOffice' "${fname}"
