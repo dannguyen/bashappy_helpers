@@ -12,8 +12,7 @@
 
 function tabname {
   # Set macOS Terminal tab title to given arguments
-  #
-  #  $ tabname Hello this is my new tab title
+  # Example:   tabname Hello this is A new tab title
   printf "\033]1;%s\007" "${*}"
 }
 
