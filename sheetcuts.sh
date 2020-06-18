@@ -4,9 +4,9 @@ function xcel {
     #
     # Example usage:
     #
-    # $ xcel mybook.xlsx
-    # $ xcel *.xls*
-    # $ xcel *.csv
+    #   xcel mybook.xlsx
+    #   xcel mybook.xls moredata.csv
+    #   xcel *.csv *.xls*
     echo "Attempting to open ${#} file(s) in Microsoft Excel"
     for fname in "$@"; do
         printf "\t%s\n" "${fname}"
@@ -20,8 +20,9 @@ function xlibre {
     #
     # Example usage:
     #
-    # $ xlibre mybook.xlsx
-    # $ xlibre *.csv
+    #   xlibre mybook.xlsx
+    #   xlibre mybook.xls moredata.csv
+    #   xlibre *.csv *.xls*
     echo "Attempting to open ${#} file(s) in LibreOffice (that's praxis!)"
     for fname in "$@"; do
         printf "\t%s\n" "${fname}"
