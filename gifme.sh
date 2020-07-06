@@ -29,7 +29,7 @@ EOF
     local CONFIGMSG
     local FFCMD
 
-    local DEFAULT_FPS=30
+    local DEFAULT_FPS='DEFAULT_FPS'
     local DEFAULT_PX_WIDTH=-1
     local DEFAULT_SPEEDUP=1
 
@@ -95,10 +95,16 @@ EOF
 >&2 echo "$CONFIGMSG"
 
 
+  local FILTER_STMT=""
+  if [ "$fps" != "$DEFAULT_FPS" ]; then
+    FILTER_STMT="framerate='fps=${fps}',"
+  fi
+  FILTER_STMT="${FILTER_STMT}setpts=PTS/${speedfactor},scale=${width_pixels}:-1:flags=lanczos[x];[x]split[x1][x2];\\
+    [x1]palettegen[p];[x2][p]paletteuse"
+
   read -r -d '' FFCMD << EOFCMD
 ffmpeg -hide_banner -loglevel warning -stats -y \\
-    -filter_complex "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=${fps}',setpts=PTS/${speedfactor},scale=${width_pixels}:-1:flags=lanczos[x];[x]split[x1][x2];\\
-    [x1]palettegen[p];[x2][p]paletteuse" \\
+    -filter_complex "${FILTER_STMT}" \\
     -i "${input_name}"  \\
     "${output_name}"
 EOFCMD
