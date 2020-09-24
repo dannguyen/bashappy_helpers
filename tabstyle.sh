@@ -8,6 +8,7 @@
 # https://stackoverflow.com/questions/8063228/how-do-i-check-if-a-variable-exists-in-a-list-in-bash
 
 
+
 tabbg(){
     # run `tabbg` with no arguments to get the help message
     # Note: tabbg requires osascript, i.e. MacOS
@@ -123,3 +124,17 @@ EOFX
 
 }
 
+
+
+function tabc {
+  # 2020-09-24
+  # sloppy hack combining tabbg and tabname, to allow for:
+
+  #    $ tabc '42 255 120' this is my tab name
+
+  # the first arg goes to tabbg and MUST be quoted
+
+  tabbg "${1}"
+  # this basically copies tabname(), because I don't know how to import that function for now
+  printf "\033]1;%s\007" "${*:2}"
+}
