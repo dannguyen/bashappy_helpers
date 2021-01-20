@@ -16,8 +16,8 @@ export _BASHAPPY_HELPERS_SUBSCRIPTS
 
 
 function bashappy_helpers_info {
-    echo "Home directory: ${_BASHAPPY_HELPERS_DIR}"
-    echo "Scripts loaded:"
+    printf '%s\n\t%s\n' "bashappy home directory:" "${_BASHAPPY_HELPERS_DIR}"
+    echo "bashappy loaded scripts:"
     for fname in "${_BASHAPPY_HELPERS_SUBSCRIPTS[@]}"; do
         fpath="${_BASHAPPY_HELPERS_DIR}/${fname}"
         printf "\t%s\n" "${fpath}"
@@ -28,7 +28,7 @@ function bashappy_helpers_info {
 function bashappy_helpers_load {
     for fname in "${_BASHAPPY_HELPERS_SUBSCRIPTS[@]}"; do
         fpath="${_BASHAPPY_HELPERS_DIR}/${fname}"
-        source ${fpath}
+        source "$fpath"
     done
 }
 
