@@ -9,6 +9,7 @@ _BASHAPPY_HELPERS_SUBSCRIPTS=(
     sheetcuts.sh
     tabname.sh
     tabstyle.sh
+    bigquery-helpers.sh
 )
 
 export _BASHAPPY_HELPERS_DIR
